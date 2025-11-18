@@ -27,7 +27,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from matplotlib.colors import LogNorm
-from mpl_toolkits.mplot3d import Axes3D
+# from mpl_toolkits.mplot3d import Axes3D
 
 from util import continue_or_quit
 from utils.warm_up_exercise import warm_up_exercise
@@ -88,7 +88,7 @@ continue_or_quit()
 
 print('\nRunning Gradient Descent...\n')
 # run gradient descent
-theta, _ = gradient_descent(X, y, theta, alpha, iterations)
+theta, J_history = gradient_descent(X, y, theta, alpha, iterations)
 
 # print theta to screen
 print('Theta found by gradient descent:\n')
@@ -100,6 +100,7 @@ print(' -3.6303\n  1.1664\n\n')
 plt.figure(0)
 line1, = plt.plot(X[:, 1], np.dot(X, theta), label='Linear Regression')
 plt.legend(handles=[line1])
+plt.show()
 
 # Predict values for population sizes of 35,000 and 70,000
 predict1 = np.dot(np.array([1, 3.5]), theta)
@@ -129,30 +130,33 @@ for i in range(theta0_vals.size):
 # we need to transpose J_vals, otherwise the axis will be flipped
 J_vals = np.transpose(J_vals)
 
-# # Surface plot
-# fig1 = plt.figure(1)
-# ax = fig1.gca(projection='3d')
-# ax.plot_surface(xs, ys, J_vals)
-# plt.xlabel(r'$\theta_0$')
-# plt.ylabel(r'$\theta_1$')
-#
-# # Contour plot
-# plt.figure(2)
-# plt.contour(xs, ys, J_vals, levels=np.logspace(-2, 3, 20), norm=LogNorm())
-# plt.plot(theta[0], theta[1], c='r', marker="x")
-
-
-
 # Surface plot
 fig1 = plt.figure(1)
-ax = fig1.add_subplot(111, projection='3d')  # FIXED
-ax.plot_surface(xs, ys, J_vals, cmap='viridis')
+ax = plt.axes(projection='3d')
+ax.plot_surface(xs, ys, J_vals)
 plt.xlabel(r'$\theta_0$')
 plt.ylabel(r'$\theta_1$')
+plt.show()
 
 # Contour plot
 plt.figure(2)
 plt.contour(xs, ys, J_vals, levels=np.logspace(-2, 3, 20), norm=LogNorm())
-plt.plot(theta[0], theta[1], 'rx')  # red X for the minimum
+plt.plot(theta[0], theta[1], c='r', marker="x")
+plt.show()
+
+
+# # Surface plot
+# fig1 = plt.figure(1)
+# ax = fig1.add_subplot(111, projection='3d')  # FIXED
+# ax.plot_surface(xs, ys, J_vals, cmap='viridis')
+# plt.xlabel(r'$\theta_0$')
+# plt.ylabel(r'$\theta_1$')
+# plt.show()
+#
+# # Contour plot
+# plt.figure(2)
+# plt.contour(xs, ys, J_vals, levels=np.logspace(-2, 3, 20), norm=LogNorm())
+# plt.plot(theta[0], theta[1], 'rx')  # red X for the minimum
+# plt.show()
 
 input('Finished.\nPress anything to exit.')

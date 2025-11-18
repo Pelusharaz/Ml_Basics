@@ -25,8 +25,8 @@ def gradientDescent(X, y, theta, alpha, num_iters):
         # theta = tmp;
 
 
-        theta = theta.copy()
-        y_pred = X.dot(theta)
+        theta = theta.copy()  # create a copy of the theta value
+        y_pred = X.dot(theta) # calculate the predicted value
 
         # Gradient for theta[0]
         par_der_0 = np.sum((y_pred - y) * X[:, 0]) / m
@@ -39,7 +39,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
         # Save cost using the updated theta
         J_history[iter] = computeCost(X, y, theta)
 
-    return theta
+    return theta, J_history
 
 
 

@@ -17,7 +17,7 @@ def computeCost(X, y, theta):
     # # After the loop, divide by 2*m to compute the final cost
     # J /= (2 * m)
 
-    m=y.size
-    J = np.sum ((X.dot(theta)-y)** 2) / (2*m)
+    m = y.size
+    J = np.sum ((X.dot(theta)-y)**2) / (2*m)
 
     return J

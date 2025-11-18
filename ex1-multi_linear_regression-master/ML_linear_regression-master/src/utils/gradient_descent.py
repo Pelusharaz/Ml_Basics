@@ -18,16 +18,16 @@ def gradient_descent(X, y, theta, alpha, num_iters):
         #
         # Hint: X.shape = (97, 2), y.shape = (97, ), theta.shape = (2, )
 
-        theta = theta.copy()
-        y_pred = X.dot(theta)
+        theta = theta.copy() #create a copy for theta
+        y_pred = X.dot(theta) # calculate the predicted value
 
         # Gradient for theta[0]
-        par_der_0 = np.sum((y_pred - y) * X[:, 0]) / m
-        theta[0] = theta[0] - alpha * par_der_0
+        pred_1 = np.sum((y_pred - y) * X[:, 0]) / m  # performing the 1st Gradient step
+        theta[0] = theta[0] - alpha * pred_1
 
         # Gradient for theta[1]
-        par_der_1 = np.sum((y_pred - y) * X[:, 1]) / m
-        theta[1] = theta[1] - alpha * par_der_1
+        pred_2 = np.sum((y_pred - y) * X[:, 1]) / m # performing the 2nd Gradient step
+        theta[1] = theta[1] - alpha * pred_2
 
         # ===========================================================
         # Save the cost every iteration

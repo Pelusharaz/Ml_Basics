@@ -19,5 +19,8 @@ def plot_data(x, y):
     # ===========================================================
 
     plt.figure()  # open a new figure window
-    plt.plot(x, y, 'r*', ms=5)
+    # plt.plot(x, y, 'r*', ms=5)
+    plt.scatter(x, y, marker='x', c='r', s=10) #plotting the training data with marker type x color b and size 10
+    plt.xlabel('population')
+    plt.ylabel('cost')
     plt.show()
