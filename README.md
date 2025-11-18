@@ -17,13 +17,13 @@ pip install -r requirements.txt
 
 
 ```
-#Running 
+# Running 
 Each exercise has its own folder. For example:
 cd ex1-master/gepitanulas-ex1-master/ex1/src
 python ex1.py
 
 
-#Structure
+# Structure
 Ml_Basics/
 ├── ex1-master/
 ├── ex1-multi_linear_regression-master/
@@ -32,10 +32,10 @@ Ml_Basics/
 ├── ex5-master/
 └── README.md
 
-#MIT LIcense
+# MIT LIcense
 
 
-#Take aways
+# Take aways
 Linear and logistic regression
 
 Cost function visualization
