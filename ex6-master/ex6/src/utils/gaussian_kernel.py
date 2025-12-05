@@ -21,6 +21,8 @@ def gaussian_kernel(x1, x2, sigma):
   #               and x2 computed using a Gaussian kernel with bandwidth
   #               sigma
 
+
+
   M = x1.dot (x2.T)
   H1 = np.sum (np.square (np.asmatrix(x1)))
   H2 = np.sum (np.square (np.asmatrix(x2)))
@@ -30,7 +32,17 @@ def gaussian_kernel(x1, x2, sigma):
   # Gaussian kernel
   sim = np.exp(-D / (2 * sigma ** 2))
 
-
+    #
+    # # convert to numpy arrays
+    # x1 = np.array(x1).flatten()
+    # x2 = np.array(x2).flatten()
+    #
+    # # squared Euclidean distance
+    # diff = x1 - x2
+    # D = np.dot(diff, diff)  # same as np.sum(diff**2)
+    #
+    # # Gaussian similarity
+    # sim = np.exp(- D / (2 * sigma ** 2))
 
 
 

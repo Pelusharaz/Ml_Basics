@@ -67,9 +67,15 @@ def ex6():
 
 
 
+
   y_pred = model.predict(X)
   acc = np.mean (y_pred == y [:,0])
-  print ("the accuracy is ")
+
+  # incase the y values are 2D and want to flatten them to a 1d use
+  # acc = np.mean(y_pred == y.ravel()) * 100
+  # print(f"The training accuracy is: {acc:.2f}%")
+
+  print ("the SVM accuracy is =", format(acc, ".2%"))
 
   visualize_boundary_linear(X, y, model)
 
@@ -121,7 +127,7 @@ def ex6():
 
   # SVM Parameters
   C = 1
-  sigma = 0.1
+  sigma = 0.01
 
 
   # [0.01,0.03,0.1,1,3,10,30]
