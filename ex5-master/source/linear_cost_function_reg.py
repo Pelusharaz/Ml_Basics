@@ -21,6 +21,15 @@ def linear_cost_function_reg(theta, X, y, lambda_):
     """
 
 
+    hyp = X.dot(theta)
+    cost = np.sum((hyp -y) **2) * (1/(2*m))
+    reg = np.sum(theta[1:] **2) / (2 * m)
+    cost += lambda_ * reg
+
+    gradient = (hyp - y).dot(X) / m
+    gradient[1:] += lambda_ * (theta[1:] / m)
+
+
 
 
 

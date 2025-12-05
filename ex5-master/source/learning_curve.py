@@ -19,10 +19,10 @@ def learning_curve(X, y, Xval, yval, lambda_):
       datasets, you might want to do this in larger intervals.
 
     """
-
-    m = X.shape[0]
-    err_train = np.zeros(m + 1)
-    err_val = np.zeros(m + 1)
+    #
+    # m = X.shape[0]
+    # err_train = np.zeros(m + 1)
+    # err_val = np.zeros(m + 1)
 
     """====================== YOUR CODE HERE ======================
     Instructions: Fill in this function to return training errors in 
@@ -55,6 +55,30 @@ def learning_curve(X, y, Xval, yval, lambda_):
     
     """
 
+
+    # for i in range (1, m+ 1):
+    #     theta = train_linear_regression(X[0:i], y[0:i],lambda_)
+    #
+    #     err_train[i-1],_ = linear_cost_function_reg(theta, X[0:i], y[0:i],lambda_)
+    #     err_val[i - 1], _ = linear_cost_function_reg(theta, X[0:i], y[0:i], lambda_)
+
+
+    # m = number of training examples
+    m = X.shape[0]
+
+    err_train = np.zeros(m + 1)
+    err_val = np.zeros(m + 1)
+
+
+    for i in range(1, m + 1):
+        # Train on the first i examples
+        theta = train_linear_regression(X[0:i], y[0:i], lambda_)
+
+        # Compute training error on the same i examples (λ = defined on ex5)
+        err_train[i - 1], _ = linear_cost_function_reg(theta, X[0:i], y[0:i], lambda_)
+
+        # Compute validation error on the entire validation set (λ = defined on ex5)
+        err_val[i - 1], _ = linear_cost_function_reg(theta, X[0:i], y[0:i], lambda_)
 
 
 

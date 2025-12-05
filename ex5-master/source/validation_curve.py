@@ -14,8 +14,8 @@ def validation_curve(X, y, Xval, yval):
     """
     #Selected values of lambda (you should not change this)
     lambda_vec = np.array([0, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 3, 10])
-    error_train = np.zeros_like(lambda_vec)
-    error_val = np.zeros_like(lambda_vec)
+    error_train = np.zeros_like(lambda_vec, dtype=float)
+    error_val = np.zeros_like(lambda_vec, dtype=float)
 
     """====================== YOUR CODE HERE ======================
     Instructions: Fill in this function to return training errors in 
@@ -39,5 +39,23 @@ def validation_curve(X, y, Xval, yval):
           end
     """
 
+    # ind =0
+    # for lam in lambda_vec:
+    #     theta = train_linear_regression()
+
+    for i, lam in enumerate(lambda_vec):
+        # Train model with regularization
+        theta = train_linear_regression(X, y, lam)
+
+        # Compute training error (lambda = 0)
+        error_train[i] = linear_cost_function_reg(theta, X, y, 0)[0]
+
+        # Compute validation error (lambda = 0)
+        error_val[i] = linear_cost_function_reg(theta, Xval, yval, 0)[0]
+
+        # # printing the best lambda
+        # best_lambda = lambda_vec[np.argmin(error_val)]
+        # print("Best lambda:", best_lambda)
 
     return lambda_vec, error_train, error_val
+

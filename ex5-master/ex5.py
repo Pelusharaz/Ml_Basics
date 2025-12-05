@@ -121,6 +121,11 @@ def ex5():
     Xpoly = poly_features(X[:, 1], power)
     Xpoly, mu, sigma = normalize_features(Xpoly)
     Xval_poly = poly_features(Xval[:, 1], power)
+
+    # Xpoly = poly_features(X, 8)
+    # Xpoly = (Xpoly - mu) / sigma  # normalize
+    # Xpoly = np.concatenate([np.ones((m, 1)), Xpoly], axis=1)
+
     Xval_poly, _, _ = normalize_features(Xval_poly)
     print('Normalized Training Example 1:\n%s' % Xpoly[0, :])
 
@@ -134,7 +139,7 @@ def ex5():
      lambda to see how the fit and learning curve change.
     """
 
-    lambda_ = 0.0
+    lambda_ = 0
     theta = train_linear_regression(Xpoly, y, lambda_)
     plot.plot(X[:, 1], y, 'rx', markersize=10)
     plot_fit(X.min(), X.max(), mu, sigma, theta, power)
@@ -165,6 +170,11 @@ def ex5():
      You will now implement validationCurve to test various values of 
      lambda on a validation set. You will then use this to select the
      "best" lambda value.
+     
+     the best lambda is where the cross validation error isn't so high and the training error isn't so low (an overfit)
+     Small lambda (≈0) → model overfits → low training error, high validation error
+     Large lambda → model underfits → both errors high
+     Best λ → spot where validation error hits its lowest point
     
     """
     lambda_vec, err_train, err_val = validation_curve(Xpoly, y, Xval_poly, yval)
@@ -176,3 +186,4 @@ def ex5():
     print('# lambda\tTrain Error\tCross Validation Error')
     for i, lambda_ in enumerate(lambda_vec):
         print('  \t%f\t\t%f\t%f' % (lambda_, err_train[i], err_val[i]))
+

@@ -46,9 +46,9 @@ def one_vs_all(X, y, num_labels, lam):
     x= np.c_[np.ones(m),X]
     all_theta = np.zeros((num_labels, n + 1))  # 10 x 401
     for i in range(num_labels):
-        y_tmp= np.zero(m)
+        y_tmp= np.zeros(m)
         y_tmp[y== i+1] = 1
-        all_theta[i:] = optimize.fmin_cg(f=cost, fprime=grad, x0=all_theta[i,:], args=(X,Y_tmp, lam), maxiter=50)
+        all_theta[i:] = optimize.fmin_cg(f=cost, fprime=grad, x0=all_theta[i,:], args=(X,y_tmp, lam), maxiter=50)
 
     return all_theta
 
